@@ -82,21 +82,26 @@ const Header = () => {
             </span>
           </div>
 
-          <div className='nav__right'>
-            <button className="btn d-flex gap-2 align-items-center ">
+          <div className='nav__right d-flex gap-2 align-items-center '>
+            <button className="btn ">
               <Link to="/sign-in">
                 SignIn
               </Link>
             </button>
-          </div>
-
-          <div className='nav__right'>
-            <button className="btn d-flex gap-2 align-items-center ">
+            <button className="btn  ">
               <Link to="/sign-up">
                 SignUp
               </Link>
             </button>
           </div>
+
+          {/* <div className='nav__right'>
+            <button className="btn d-flex align-items-center ">
+              <Link to="/sign-up">
+                SignUp
+              </Link>
+            </button>
+          </div> */}
         </div>
       </Container>
     </header>
