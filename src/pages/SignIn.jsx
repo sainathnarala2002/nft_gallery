@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap';
 import CommonSection from '../components/ui/Common-Section/CommonSection';
 import { Link } from 'react-router-dom';
 import '../styles/sign_in.css';

@@ -49,13 +49,20 @@
     margin-bottom: 0;
 }
 
+
 .nav__right .btn {
     padding: 7px 25px;
     border: 1px solid #5142FC;
     border-radius: 50px;
+    color: #fff;
+}
+.nav__right .btn:hover {
+    background-color: #b229e4;
+    color: #fff;
+    border: none;
 }
 
-.nav__right .btn a{
+.nav__right a{
     color: #fff;
     text-decoration: none;
     font-size: 0.8rem;
@@ -66,7 +73,7 @@
     color: #fff;
 }
 
-.nav__right .btn a:hover{
+.nav__right a:hover{
     color: #fff;
 }
 
@@ -111,8 +118,9 @@
     .btn {
         padding: 4px 25px !important;
     }
-
+    
     .btn a {
         font-size: 0.7rem !important;
+        text-decoration: none;
     }
 }

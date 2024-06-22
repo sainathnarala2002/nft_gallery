@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './Header.css';
 import { Container } from "reactstrap";
 
@@ -24,6 +24,7 @@ const NAV__LINKS = [
 ];
 
 const Header = () => {
+  const [activeButton, setActiveButton] = useState('signIn');
   const headerRef = useRef(null)
 
   const menuRef = useRef(null)
@@ -67,41 +68,34 @@ const Header = () => {
           </div>
 
           <div className="nav__right d-flex align-items-center gap-5 ">
-            <button className="btn d-flex gap-2 align-items-center ">
-              <span>
-                <i class="ri-wallet-line"></i>
-              </span>
-              <Link to="/wallet">
+            <Link to="/wallet">
+              <button className={`btn d-flex gap-2 align-items-center ${activeButton === 'wallet' ? 'btn-primary ' : 'bg-primary-subtle'} `} onClick={() => setActiveButton('wallet')}>
+                <span>
+                  <i class="ri-wallet-line"></i>
+                </span>
 
                 Connect Wallet
-              </Link>
-            </button>
+              </button>
+            </Link>
 
             <span className='mobile__menu'>
               <i class="ri-menu-line" onClick={toggleMenu}></i>
             </span>
           </div>
-
-          <div className='nav__right d-flex gap-2 align-items-center '>
-            <button className="btn ">
-              <Link to="/sign-in">
+          <div className='nav__right align-items-center'>
+            <Link to="/sign-in" className=''>
+              <button className={`btn ${activeButton === 'signIn' ? 'btn-primary ' : 'bg-primary-subtle'} me-2`}
+                onClick={() => setActiveButton('signIn')}>
                 SignIn
-              </Link>
-            </button>
-            <button className="btn  ">
-              <Link to="/sign-up">
+              </button>
+            </Link>
+            <Link to="/sign-up" className=''>
+              <button className={`btn ${activeButton === 'signUp' ? 'btn-primary' : 'bg-primary-subtle'}`}
+                onClick={() => setActiveButton('signUp')}>
                 SignUp
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
-
-          {/* <div className='nav__right'>
-            <button className="btn d-flex align-items-center ">
-              <Link to="/sign-up">
-                SignUp
-              </Link>
-            </button>
-          </div> */}
         </div>
       </Container>
     </header>
