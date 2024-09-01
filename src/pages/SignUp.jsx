@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { registerUser } from '../services/authService';
 import CommonSection from '../components/ui/Common-Section/CommonSection';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -26,15 +25,11 @@ const SignUp = () => {
   };
 
   const sendEmailOtp = async () => {
-    // const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    // setEmailOtp(otp);
-  
     try {
       // Call the backend API to send the email OTP
-      await axios.post('http://localhost:5000/api/sendOtp', {
+      await axios.post('http://localhost:5001/user/sendOtp', {
         email: formData.email, 
       });
-  
       setEmailOtpSent(true);
       alert('Email OTP sent successfully');
     } catch (error) {
@@ -45,37 +40,57 @@ const SignUp = () => {
   
 
   
-  const verifyEmailOtp = () => {
-    if (formData.emailOtp === emailOtpSent) {
-      setEmailVerified(true);
-      alert("Email verified successfully");
-    } else {
-      alert("Invalid email OTP");
+  const verifyEmailOtp = async () => {
+    try {
+        const response = await axios.post('http://localhost:5001/user/verifyEmail', {
+            email: formData.email,
+            otp: formData.emailOtp // This is the OTP entered by the user
+        });
+
+        if (response.data.success) {
+            alert('OTP verified successfully.');
+            setEmailVerified(true);
+            // You can now allow the user to complete the signup process
+        } else {
+            alert('OTP verification failed: ' + response.data.message);
+        }
+    } catch (error) {
+        console.error('Error verifying OTP:', error);
+        alert('Failed to verify OTP. Please try again.');
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    if (emailVerified ) {
-      console.log(formData);
-      // Call the register function here
-      registerUser(formData).then(response => {
-        alert("Registration successful");
-      }).catch(error => {
-        alert("Registration failed: " + error.message);
-      });
-    } else {
-      alert("Please verify both email and mobile OTPs.");
+  const registerUser = async () => {
+    try {
+        const response = await axios.post('http://localhost:5001/user/register', {
+            firstName: formData.firstName,
+            middleName: formData.middleName,
+            lastName: formData.lastName,
+            dob: formData.dob, 
+            email: formData.email, 
+            mobileNumber: formData.mobile, 
+            password: formData.password, 
+            confirmPassword: formData.confirmPassword
+        });
+
+        if (response.data.success) {
+            alert('Register successfully.'); 
+            // You can now allow the user to complete the signup process
+        } else {
+            alert('Error' + response.data.message);
+        }
+    } catch (error) {
+        console.error('Error from backend:', error);
+        alert('Failed to register check backend. Please try again.');
     }
   };
-
+ 
   return (
     <>
       <CommonSection title={"Sign Up"} />
       <section>
         <Container>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={registerUser}>
             <Row className='justify-content-md-center'>
               <Col className='d-flex gap-4 justify-content-center '>
                 <div className="form__input">
@@ -228,6 +243,7 @@ const SignUp = () => {
                   type="submit" 
                   className="btn btn-primary" 
                   disabled={!emailVerified }
+                  
                 >
                   Sign Up
                 </button>
