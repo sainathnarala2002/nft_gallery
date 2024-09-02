@@ -31,10 +31,11 @@ const SignIn = () => {
     
         try {
           const response = await axios.post('http://localhost:5001/user/login', formData);
+          console.log(response.data);
           
-          if (response.data.success) {
+          if (response.data) {
             // alert('Sign in successful');
-            login(response.data.user); // Save user data to context
+            login(response.data); // Save user data to context
             navigate('/home'); // Redirect to home after successful sign-in
             // Handle successful sign-in, e.g., redirecting or storing user info
           } else {
@@ -75,9 +76,7 @@ const SignIn = () => {
                                 </div>
                                 <div className='d-flex justify-content-center mt-5'>
                                     <button type="submit" className='btn__btn d-flex gap-2 align-items-center'  disabled={loading}>
-                                        <Link to="/home">
                                         {loading ? 'Signing In...' : 'Sign In'}
-                                        </Link>
                                     </button>
                                 </div>
                             </form>

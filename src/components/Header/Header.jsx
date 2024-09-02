@@ -80,7 +80,9 @@ const Header = () => {
                 <Link to="/profile">
                   <i className="ri-user-line" style={{ fontSize: '1.5rem' }}></i>
                 </Link>
-                <button className="btn btn-danger ms-3" onClick={logout}>Logout</button>
+                <Link to="/Home">
+                  <button className="btn btn-danger ms-3" onClick={logout}>Logout</button>
+                </Link>
               </>
             ) : (
               <>
