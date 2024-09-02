@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import CommonSection from '../components/ui/Common-Section/CommonSection';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/forgot_password.css';
 
 const ForgotPassword = () => {
@@ -21,7 +21,7 @@ const ForgotPassword = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5001/user/send-otp', { email });
+            const response = await axios.post('http://localhost:5001/user/sendOtpForForgetPassword', { email });
             if (response.data.success) {
                 setStep(2); // Move to OTP verification step
             } else {
@@ -40,8 +40,10 @@ const ForgotPassword = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5001/user/verify-otp', { email, otp });
-            if (response.data.success) {
+            const response = await axios.post('http://localhost:5001/user/verifyEmail', { email, otp });
+            console.log("VerifyOtP",response.data);
+            
+            if (response.data) {
                 setStep(3); // Move to password reset step
             } else {
                 setError(response.data.message);
@@ -65,8 +67,10 @@ const ForgotPassword = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:5001/user/reset-password', { email, newPassword });
-            if (response.data.success) {
+            const response = await axios.post('http://localhost:5001/user/ChangePassword', { email, newPassword });
+            console.log("ChangePassword",response.data);
+            
+            if (response.data) {
                 navigate('/sign-in'); // Redirect to sign-in page
             } else {
                 setError(response.data.message);
