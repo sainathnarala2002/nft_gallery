@@ -15,8 +15,8 @@ const HeroSection = () => {
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio est, deleniti inventore labore magnam at voluptatem esse dicta incidunt ratione blanditiis porro vero tempore harum. Earum doloribus quasi autem reiciendis!</p>
 
                     <div className='hero__btns d-flex align-items-center gap-4 '>
-                        <button className=' explore__btn d-flex align-items-center gap-2'><i class="ri-rocket-line"></i><Link to='/market' >Explore</Link></button>
-                        <button className=' create__btn d-flex align-items-center gap-2'><i class="ri-ball-pen-line"></i><Link to='/create' >Create</Link></button>
+                        <button className=' explore__btn d-flex align-items-center gap-2'><i className="ri-rocket-line"></i><Link to='/market' >Explore</Link></button>
+                        <button className=' create__btn d-flex align-items-center gap-2'><i className="ri-ball-pen-line"></i><Link to='/create' >Create</Link></button>
                     </div>
                 </div>
             </Col>

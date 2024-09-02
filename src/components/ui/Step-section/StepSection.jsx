@@ -38,7 +38,7 @@ const StepSection = () => {
                 STEP__DATA.map((item, index)=>
                 <Col lg='3' md='4' sm='6' key={index} className='mb-4'>
                     <div className="single__step__item">
-                        <span><i class={item.icon}></i></span>
+                        <span><i className={item.icon}></i></span>
                         <div className="step__item__content">
                             <h5>
                                 <Link to='./wallet' >{item.title}</Link>

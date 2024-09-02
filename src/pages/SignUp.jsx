@@ -17,7 +17,6 @@ const SignUp = () => {
   });
 
   const [emailOtpSent, setEmailOtpSent] = useState(false);
-  // const [emailOtp, setEmailOtp] = useState('');
   const [emailVerified, setEmailVerified] = useState(false);
 
   const handleChange = (e) => {
@@ -37,9 +36,7 @@ const SignUp = () => {
       alert('Failed to send email OTP. Please try again.');
     }
   };
-  
 
-  
   const verifyEmailOtp = async () => {
     try {
         const response = await axios.post('http://localhost:5001/user/verifyEmail', {
