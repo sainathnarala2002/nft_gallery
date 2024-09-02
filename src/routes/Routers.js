@@ -12,6 +12,7 @@ import Wallet from '../pages/Wallet'
 import NftDetails from '../pages/NftDetails'
 import SignIn from '../pages/SignIn.jsx';
 import SignUp from "../pages/SignUp.jsx";
+import ForgotPassword from "../pages/ForgotPassword.jsx";
 
 const Routers = () => {
   return (
@@ -28,6 +29,7 @@ const Routers = () => {
         <Route path='/sign-in' element={<SignIn />}/>
         <Route path='/sign-up' element={<SignUp />}/>
         <Route path='/market/:id' element={<NftDetails />}/>
+        <Route path='/forgot-password' element={<ForgotPassword />}/>
     </Routes>
   );
 };
