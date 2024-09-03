@@ -77,7 +77,7 @@ const Header = () => {
           <div className="nav__right align-items-center">
             {user ? (
               <>
-                <Link to="/profile">
+                <Link to="/my-profile">
                   <i className="ri-user-line" style={{ fontSize: '1.5rem' }}></i>
                 </Link>
                 <Link to="/Home">

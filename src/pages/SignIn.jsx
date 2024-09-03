@@ -31,9 +31,9 @@ const SignIn = () => {
     
         try {
           const response = await axios.post('http://localhost:5001/user/login', formData);
-          console.log(response.data);
+          console.log(response.data.token);
           
-          if (response.data) {
+          if (response.data.token) {
             // alert('Sign in successful');
             login(response.data); // Save user data to context
             navigate('/home'); // Redirect to home after successful sign-in
